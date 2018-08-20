@@ -55,7 +55,17 @@ com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 fabric.properties
+# dependencies
+node_modules
 
+# logs
+npm-debug.log
+
+# Nuxt build
+.nuxt
+
+# Nuxt generate
+dist
 # Editor-based Rest Client
 .idea/httpRequests
 
@@ -63,3 +73,6 @@ fabric.properties
 *.dll
 build/
 .idea/
+*.pdb
+bin/
+obj/
