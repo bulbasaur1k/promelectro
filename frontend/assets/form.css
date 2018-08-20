@@ -1,0 +1,76 @@
+.form-body {
+  padding: 1rem;
+  flex-wrap: wrap;
+  display: flex;
+  width: 22rem;
+  -webkit-box-pack: center;
+  align-content: center;
+  height: 20rem;
+
+}
+.form-body-container{
+  display: flex;
+  justify-content: center;
+  padding-top: 5rem;
+}
+.form-body > input {
+  width: 100%;
+  height: 2.3rem;
+  font-size: .9em;
+  margin-bottom: .5rem;
+  padding-left: 1em;
+}
+
+.button {
+  font-size: 1.5em;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  cursor: pointer;
+}
+.button-glow {
+  -webkit-animation-duration: 3s;
+  animation-duration: 3s;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-name: glowing;
+  animation-name: glowing;
+}
+
+.button-highlight,
+.button-highlight-flat {
+  background-color: #57a8d1;
+  border-color: #57a8d1;
+  color: white;
+  border-width: 1px;
+  border-style: solid;
+}
+
+.button-highlight:visited,
+.button-highlight-flat:visited {
+  color: #57a8d1;
+}
+
+.button-highlight:hover, .button-highlight:focus,
+.button-highlight-flat:hover,
+.button-highlight-flat:focus {
+  background-color: #71c4ed;
+  border-color: #4284a5;
+  color: white;
+}
+
+
+
+.button-rounded {
+  border-radius: 4px;
+}
+
+.button-glow.button-highlight {
+  -webkit-animation-name: glowing-highlight;
+  animation-name: glowing-highlight;
+}
+
+.button-glow:active, .button-glow.active, .button-glow.is-active {
+  -webkit-animation-name: none;
+  animation-name: none;
+}
