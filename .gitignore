@@ -62,3 +62,4 @@ fabric.properties
 *.log
 *.dll
 build/
+.idea/
