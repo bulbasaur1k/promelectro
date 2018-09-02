@@ -26,6 +26,16 @@ namespace Promelectro.Api.Data
             builder.Entity<User>().Property(x => x.LastName).HasMaxLength(128);
             builder.Entity<User>().Property(x => x.Surname).HasMaxLength(128);
             builder.Entity<Role>().Property(x => x.Description).HasMaxLength(500);
+
+            var file = builder.Entity<File>();
+            file.Property(x => x.Description).HasMaxLength(250).IsRequired();
+            file.Property(x => x.DateLoad).IsRequired();
+            file.Property(x => x.UserId).IsRequired();
+
+            var post = builder.Entity<Post>();
+            post.Property(x => x.Name).HasMaxLength(250).IsRequired();
+            post.Property(x => x.Text).IsRequired();
+            post.Property(x => x.DateCreate).IsRequired();
         }
     }
 }

@@ -1,10 +1,10 @@
 import {AUTH_REQUEST, AUTH_ERROR, AUTH_SUCCESS, AUTH_LOGOUT, REG_REQUEST} from '../actions/auth';
 import {USER_REQUEST} from '../actions/user';
-import {api} from '../../services/account.service'
-import axios from 'axios';
+import {apiUrl} from '../../services/account.service'
+import axios from 'axios'
 
 const state = {
-  token: process.browser ? (localStorage.getItem('user-token') || '') : '',
+  token: process.browser ? localStorage.getItem('token') ? localStorage.getItem('token') : '' : '',
   status: '',
   hasLoadedOnce: false
 };
@@ -16,11 +16,14 @@ const getters = {
 
 const actions = {
   [AUTH_REQUEST]: ({commit, dispatch}, user) => {
+    console.log(state.token);
     return new Promise(((resolve, reject) => {
       commit(AUTH_REQUEST);
-      axios({url: '${}/auth', data: user, method: 'POST'})
+     
+      axios({url: `${apiUrl}/auth/login`, data: user, method: 'POST'})
         .then(resp => {
-          console.log(resp);
+          console.log(resp.data);
+          console.log(resp.data.token);
           const token = resp.data.token;
           if (process.browser) {
             localStorage.setItem('user-token', token);
@@ -39,9 +42,10 @@ const actions = {
     }))
   },
   [REG_REQUEST]: ({commit, dispath}, regData )=>{
+    console.log(state.token);
     return new Promise(((resolve, reject) => {
       commit(REG_REQUEST);
-      axios({url: `${api.url}/register`})
+      axios({url: `${apiUrl}/auth/register`})
     }))
   },
   [AUTH_LOGOUT]: ({commit, dispatch}) => {
@@ -52,14 +56,6 @@ const actions = {
       }
       resolve()
     }))
-  },
-  nuxtServerInit() {
-    if(process.browser) {
-      const token = localStorage.getItem('user-token');
-      if (token) {
-        axios.defaults.headers.Authorization = `Bearer ${token}`;
-      }
-    }
   }
 };
 
@@ -70,9 +66,10 @@ const mutations = {
   [REG_REQUEST]: (state) => {
     state.status = 'loading';
   },
-  [AUTH_SUCCESS]: (state, resp) => {
+  [AUTH_SUCCESS]: (state, token) => {
+    axios.defaults.headers.Authorization = `Bearer ${token}`;
     state.status = 'success';
-    state.token = resp.token;
+    state.token = token;
     state.hasLoadedOnce = true;
   },
   [AUTH_ERROR]: (state) => {

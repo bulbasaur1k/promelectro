@@ -13,7 +13,7 @@ module.exports = {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
-  plugins: ['~plugins/vue-delay', "~plugins/vee-validate"],
+  plugins: ['~plugins/vue-delay', '~plugins/vee-validate'],
   /*
   ** Customize the progress bar color
   */

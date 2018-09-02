@@ -31,12 +31,11 @@
 
 <script>
   import axios from 'axios'
-  import {AUTH_REQUEST} from '../store/actions/auth'
-  import {}
+  import {AUTH_REQUEST, REG_REQUEST} from '../store/actions/auth';
 
   export default {
     name: "auth",
-    ransition: 'bounce',e
+    ransition: 'bounce',
 
 
     data() {
@@ -71,7 +70,7 @@
         if (!this.errors.any()) {
           const loginData = this.loginForm;
           this.$store.dispatch(AUTH_REQUEST, loginData).then(() => {
-            this.$router.push('/')
+            this.$router.push('/user')
           })
 
         }
@@ -82,7 +81,9 @@
       SubmitReg() {
         if (!this.errors.any()) {
           const regData = this.RegForm;
-          this.$store.dispath()
+          this.$store.dispatch(REG_REQUEST, regData).then(() => {
+            this.$router.push('/auth')
+          })
           /*axios.post('http://localhost:5000/api/accounts', this.regForm)
             .then(function (response) {
               if (response.status === 200) {
